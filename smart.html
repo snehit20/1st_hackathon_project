@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Distribution Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Body Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #000;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+
+        h1 {
+            margin-top: 50px;
+            color: #32CD32;
+        }
+
+        /* Main Content Section */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Button Styling */
+        .button-container {
+            margin-top: 50px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .button-container button {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background-color: #32CD32;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #228B22;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            color: white;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #32CD32;
+        }
+
+        /* Search Container */
+        .search-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        input, select {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 2px solid #32CD32;
+            background: #333;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #32CD32;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="mailto:support@foodnetwork.com">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Food Distribution Network</h1>
+
+        <!-- Button Section -->
+        <div class="button-container">
+            <button id="buyWholesaleBtn">Buy Wholesale Crops</button>
+            <button id="becomeSellerBtn">Become a Seller</button>
+        </div>
+
+        <!-- Search Container -->
+        <div class="search-container" id="buyWholesaleSection">
+            <input type="search" id="cropSearch" placeholder="Search crops...">
+            <select id="quantity">
+                <option value="10">10 kg</option>
+                <option value="20">20 kg</option>
+                <option value="30">30 kg</option>
+                <option value="40">40 kg</option>
+                <option value="50">50 kg</option>
+            </select>
+        </div>
+
+        <!-- Seller Modal -->
+        <div class="modal" id="sellerModal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Seller Registration</h2>
+                <form>
+                    <input type="text" id="name" placeholder="Name" required><br>
+                    <input type="text" id="surname" placeholder="Surname" required><br>
+                    <input type="email" id="email" placeholder="Email" required><br>
+                    <input type="password" id="password" placeholder="Password" required><br>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br>
+                    <button type="button" onclick="registerSeller()">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by <a href="https://www.techtitans.com" target="_blank">Tech Titans</a></p>
+    </footer>
+
+    <script>
+        // Toggle Buy Wholesale Section
+        const buyWholesaleBtn = document.getElementById('buyWholesaleBtn');
+        const buyWholesaleSection = document.getElementById('buyWholesaleSection');
+
+        buyWholesaleBtn.onclick = () => {
+            buyWholesaleSection.style.display = buyWholesaleSection.style.display === 'block' ? 'none' : 'block';
+        };
+
+        // Open Seller Modal
+        const becomeSellerBtn = document.getElementById('becomeSellerBtn');
+        const sellerModal = document.getElementById('sellerModal');
+
+        becomeSellerBtn.onclick = () => {
+            sellerModal.style.display = 'flex';
+        };
+
+        // Close Modal
+        function closeModal() {
+            sellerModal.style.display = 'none';
+        }
+
+        // Close Modal on Outside Click
+        window.onclick = (event) => {
+            if (event.target === sellerModal) {
+                closeModal();
+            }
+        };
+
+        // Register Seller Function
+        function registerSeller() {
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            alert(`Seller Registered: ${name} ${surname}`);
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>

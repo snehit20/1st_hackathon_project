@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain in Sustainable Agriculture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Body Styling */
+        body {
+            background-color: #000;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            padding: 10px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #32CD32;
+        }
+
+        /* Header Section with Green Heading */
+        h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 4em;
+            margin-top: 50px;
+            color: #32CD32;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button Container - Centering Buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .button-container button {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background-color: #32CD32;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 250px;
+        }
+
+        .button-container button:hover {
+            background-color: #228B22;
+        }
+
+        /* Modal (Popup) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 8px;
+            width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        .modal-content h2 {
+            color: #32CD32;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            background-color: #32CD32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #228B22;
+        }
+
+        .close {
+            color: #32CD32;
+            font-size: 2em;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px 40px;
+            background-color: #32CD32;
+            color: white;
+            font-size: 1.2em;
+            border-top: 1px solid white;
+            position: relative;
+            bottom: 0;
+        }
+
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="mailto:support@agricultureblockchain.com">Contact</a>
+    </div>
+
+    <!-- Header Section -->
+    <h1>Blockchain in Sustainable Agriculture</h1>
+
+    <!-- Button Section (Five Options for Blockchain Features) -->
+    <div class="button-container">
+        <button id="traceabilityBtn">Enhanced Traceability</button>
+        <button id="consumerTrustBtn">Consumer Trust</button>
+        <button id="efficiencyBtn">Increased Efficiency</button>
+        <button id="certificationBtn">Reduced Certification Costs</button>
+        <button id="dataSharingBtn">Secured Data Sharing</button>
+    </div>
+
+    <!-- Modal for Enhanced Traceability -->
+    <div class="modal" id="traceabilityModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('traceabilityModal')">&times;</span>
+            <h2>Enhanced Traceability</h2>
+            <p>Blockchain allows for real-time tracking of products throughout the supply chain. This ensures that every step, from seed to shelf, is documented, verified, and transparent to all stakeholders. With immutable records, consumers can trust that the product has been ethically produced and sourced sustainably.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Consumer Trust -->
+    <div class="modal" id="consumerTrustModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('consumerTrustModal')">&times;</span>
+            <h2>Building Consumer Trust</h2>
+            <p>Blockchain can enhance consumer trust by offering transparent and auditable product histories. Customers can verify the sourcing, production methods, and authenticity of the products they purchase, reducing fears of fraud and contamination.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Increased Efficiency -->
+    <div class="modal" id="efficiencyModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('efficiencyModal')">&times;</span>
+            <h2>Increased Efficiency</h2>
+            <p>Blockchain eliminates paperwork, streamlines communications, and reduces manual errors, leading to a more efficient agricultural supply chain. Automation of processes through smart contracts also ensures faster and cheaper transactions between stakeholders.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Reduced Certification Costs -->
+    <div class="modal" id="certificationModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('certificationModal')">&times;</span>
+            <h2>Reduced Certification Costs</h2>
+            <p>With blockchain's ability to provide transparent, immutable records, the need for expensive third-party audits and certifications is minimized. Certifications are verified in real-time, reducing administrative burdens and lowering costs for farmers and businesses.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Secured Data Sharing -->
+    <div class="modal" id="dataSharingModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dataSharingModal')">&times;</span>
+            <h2>Secured Data Sharing</h2>
+            <p>Blockchain ensures that sensitive data is securely shared across the agricultural supply chain. Only authorized users have access to specific information, with encryption and immutability offering a higher level of protection against data breaches and tampering.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by <a href="https://www.blockchainagriculture.com" target="_blank">Blockchain Agriculture</a></p>
+    </footer>
+
+    <script>
+        // Open Modal Functions
+        document.getElementById('traceabilityBtn').onclick = function() {
+            document.getElementById('traceabilityModal').style.display = 'flex';
+        };
+
+        document.getElementById('consumerTrustBtn').onclick = function() {
+            document.getElementById('consumerTrustModal').style.display = 'flex';
+        };
+
+        document.getElementById('efficiencyBtn').onclick = function() {
+            document.getElementById('efficiencyModal').style.display = 'flex';
+        };
+
+        document.getElementById('certificationBtn').onclick = function() {
+            document.getElementById('certificationModal').style.display = 'flex';
+        };
+
+        document.getElementById('dataSharingBtn').onclick = function() {
+            document.getElementById('dataSharingModal').style.display = 'flex';
+        };
+
+        // Close Modal Function
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
